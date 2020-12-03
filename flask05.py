@@ -234,6 +234,22 @@ def new_comment(note_id):
     else:
         return redirect(url_for('login'))
 
+@app.route('/notes/<note_id>/comment/delete/<comment_id>', methods=['POST'])
+def delete_comment(note_id, comment_id):
+
+    #check if a user is saved in session
+    if session.get('user'):
+
+        #retrieve note from database
+        my_comment = db.session.query(Comment).filter_by(id = comment_id).one()
+        db.session.delete(my_comment)
+        db.session.commit()
+
+        return redirect(url_for('get_note', note_id=note_id))
+    else:
+        # user is not in session redirect to login
+        return redirect(url_for('login'))
+
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 
 # To see the web page in your web browser, go to the url,
