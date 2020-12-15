@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='official_main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
 </head>
 <body>
 <div class="navdiv">
-    <nav>
-        <a href="{{ url_for('index') }}"> Home</a> ||
-        <a href="{{ url_for('get_notes') }}"> My Notes</a> ||
-        <a href="{{ url_for('new_note') }}">Add Note</a> ||
+    <nav id="nav">
+        <a href="{{ url_for('index') }}"> Home</a>
+        <a href="{{ url_for('get_notes') }}"> My Notes</a>
+        <a href="{{ url_for('new_note') }}">Add Note</a>
         <a href="{{ url_for('get_todo') }}"> Todo List</a>
     </nav>
 
