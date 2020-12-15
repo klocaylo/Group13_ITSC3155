@@ -90,13 +90,16 @@ def new_note():
             #get note data
             text = request.form['noteText']
 
+            # get color 
+            color = request.form['color']
+
             #create date stamp
             from datetime import date
             today = date.today()
 
             #format date mm/dd/yyyy
             today = today.strftime("%m-%d-%Y")
-            new_record = Note(title, text, today, session['user_id'])
+            new_record = Note(title, text, today, color, session['user_id'])
             db.session.add(new_record)
             db.session.commit()
 
@@ -119,6 +122,9 @@ def update_note(note_id):
             # check method used for request
             title = request.form['title']
 
+             # get color choice 
+            color = request.form['color']
+
             # get note data
             text = request.form['noteText']
             note = db.session.query(Note).filter_by(id = note_id).one()
@@ -126,6 +132,7 @@ def update_note(note_id):
             #update note data
             note.title = title
             note.text = text
+            note.color = color
 
             #update note in DB
             db.session.add(note)

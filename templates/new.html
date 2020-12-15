@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -24,27 +24,34 @@
 {% if note %}
     <form action="{{ url_for('update_note', note_id=note.id) }}" method="post">
 {% else %}
-    <form action="new" method="post">
-{% endif %}
-    <p><label>Title </label></p>
-    <p><input type="text" name="title" value="{% if note %}{{note.title}} {% endif %}"/></p>
-    <p><label>Note </label></p>
-    <p>
-        <textarea name="noteText"  rows="6" cols="0" >
+        <form action="new" method="post">
+            {% endif %}
+            <p><label>Title </label></p>
+            <p><input type="text" name="title" value="{% if note %}{{note.title}} {% endif %}" /></p>
+            <p><label>Note </label></p>
+            <p>
+                <textarea name="noteText" rows="6" cols="0">
             {% if note %}
                 {{note.text}}
             {% else %}
                 Add your new note here...
             {% endif %}
         </textarea>
-    </p>
-    <p>
-        {% if note %}
-            <input type="submit" value="Update Note"/>
-        {% else %}
-            <input type="submit" value="Add Note"/>
-        {% endif %}
-    </p>
-</form>
+            </p>
+            <p><label> Choose color for the note: </label></p>
+            <input type="radio" id="red" name="color" value="red">
+            <label for="red">Red</label><br>
+            <input type="radio" id="blue" name="color" value="blue">
+            <label for="blue">Blue</label><br>
+            <input type="radio" id="green" name="color" value="green">
+            <label for="green">Green</label><br><br>
+            <p>
+                {% if note %}
+                <input type="submit" value="Update Note" />
+                {% else %}
+                <input type="submit" value="Add Note" />
+                {% endif %}
+            </p>
+        </form>
 </body>
 </html>

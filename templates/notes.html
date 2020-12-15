@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -35,11 +35,18 @@
     </tr>
     {% for note in notes %}
     <tr>
-        <td><a href ="{{ url_for('get_note', note_id=note.id)}}">{{note.title}}</a></td>
+        {% if note.color == 'red' %}
+        <td><a href="{{ url_for('get_note', note_id=note.id)}}" style="color:red">{{note.title}}</a></td>
+        {% elif note.color == 'blue' %}
+        <td><a href="{{ url_for('get_note', note_id=note.id)}}" style="color:blue">{{note.title}}</a></td>
+        {% else %}
+        <td><a href="{{ url_for('get_note', note_id=note.id)}}" style="color:green">{{note.title}}</a></td>
+        {% endif %}
+
         <td>{{ note.date }}</td>
-        <td><a href ="{{ url_for('update_note', note_id=note.id)}}">Edit</a></td>
+        <td><a href="{{ url_for('update_note', note_id=note.id)}}">Edit</a></td>
         <td>
-            <form action ="{{url_for('delete_note', note_id=note.id) }}" method="post">
+            <form action="{{url_for('delete_note', note_id=note.id) }}" method="post">
                 <input type="submit" Value="Delete">
             </form>
         </td>
