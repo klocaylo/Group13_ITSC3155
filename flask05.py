@@ -10,6 +10,7 @@ from flask import url_for
 from database import db
 from models import Note as Note
 from models import User as User
+from models import Todo as Todo
 from forms import RegisterForm
 import bcrypt
 from flask import session
@@ -246,6 +247,67 @@ def delete_comment(note_id, comment_id):
         db.session.commit()
 
         return redirect(url_for('get_note', note_id=note_id))
+    else:
+        # user is not in session redirect to login
+        return redirect(url_for('login'))
+
+
+@app.route('/todo', methods=['GET', 'POST'])
+def get_todo():
+    # check if a user is saved in session
+    if session.get('user'):
+
+        # retrieve notes from database
+        my_todo = db.session.query(Todo).filter_by(user_id=session['user_id']).all()
+
+        return render_template('todo.html', todos=my_todo, user=session['user'])
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/todo/new', methods=['GET', 'POST'])
+def todo_new():
+
+    # check if a user is saved in session
+    if session.get('user'):
+
+        #check method used for request
+        if request.method == 'POST':
+
+            #get title data
+            title = request.form['title']
+
+            #create date stamp
+            from datetime import date
+            today = date.today()
+
+            check = False;
+
+            #format date mm/dd/yyyy
+            today = today.strftime("%m-%d-%Y")
+            new_record = Todo(title, today, check, session['user_id'])
+            db.session.add(new_record)
+            db.session.commit()
+
+            return redirect(url_for('get_todo'))
+        else:
+            # GET request - show new note form
+            return render_template('todo.html', user=session['user'])
+    else:
+        #user is not in session redirect to login
+        return redirect(url_for('login'))
+
+@app.route('/todo/done/<todo_id>', methods=['POST'])
+def todo_done(todo_id):
+
+    #check if a user is saved in session
+    if session.get('user'):
+
+        #retrieve note from database
+        my_todo = db.session.query(Todo).filter_by(id = todo_id).one()
+        db.session.delete(my_todo)
+        db.session.commit()
+
+        return redirect(url_for('get_todo'))
     else:
         # user is not in session redirect to login
         return redirect(url_for('login'))

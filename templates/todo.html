@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="✨The Fabulous Five✨ Notes App">
+    <title>UNCC Notes App - View your Notes</title>
+    <!-- styles -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+
+<nav>
+    <a href="{{ url_for('index') }}"> Home</a> ||
+    <a href="{{ url_for('get_notes') }}"> My Notes</a> ||
+    <a href="{{ url_for('new_note') }}"> Add Note</a> ||
+    <a href="{{ url_for('get_todo') }}"> Todo List</a>
+</nav>
+
+<nav>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+
+<h1>Welcome {{user}} to ✨The Fabulous Five✨ Notes App!</h1>
+
+<h1>Todo List</h1>
+
+<table class="container">
+    <tr>
+        <th></th>
+        <th align="left">Todo Item</th>
+        <th align="left">Date</th>
+        <th></th>
+    </tr>
+    {% for todo in todos %}
+
+    <tr>
+        <td>
+            <form action="{{ url_for('todo_done', todo_id=todo.id) }}" method="post">
+                <input type="submit" value="✔">
+            </form>
+        </td>
+        <td>{{ todo.title }}</a></td>
+        <td>{{ todo.date }}</td>
+    </tr>
+
+    {% endfor %}
+</table>
+
+{% if todo %}
+<form action="{{ url_for('todo_new') }}" method="post">
+    {% else %}
+    <form action="todo/new" method="post">
+        {% endif %}
+        <p><label>What do you want to add to the list? </label></p>
+        <p><input type="text" name="title" value="{% if todo %}{{todo.title}} {% endif %}"/></p>
+        <p>
+            <input type="submit" value="Add To List"/>
+        </p>
+    </form>
+</form>
+</body>
+</html>
