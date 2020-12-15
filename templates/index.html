@@ -18,6 +18,8 @@
 
             <a href={{ url_for('new_note') }}>Add Notes</a>
 
+            <a href="{{ url_for('get_favorite') }}">Favorite Notes</a>
+
             <a href="{{ url_for('get_todo') }}"> Todo List</a>
 
         {% if user %}

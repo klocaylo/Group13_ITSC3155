@@ -6,31 +6,54 @@
     <meta name="description" content="UNCC Notes App">
     <title>UNCC Notes App - View your Notes</title>
     <!-- styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename=''official_main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='official_main.css') }}">
 </head>
 <body>
 <nav id="nav">
-    <a href="{{url_for('index') }}">Home</a> ||
-    <a href="{{url_for('get_notes') }}"> My Notes </a> ||
-    <a href="{{url_for('new_note') }}">Add Note</a> ||
+    <a href={{ url_for('index') }}>  Home</a>
+
+    <a href={{ url_for('get_notes') }}> My Notes</a>
+
+    <a href={{ url_for('new_note') }}>Add Notes</a>
+
+    <a href="{{ url_for('get_favorite') }}">Favorite Notes</a>
+
+    <a href="{{ url_for('get_todo') }}"> Todo List</a>
+
+    {% if user %}
     <a href="{{ url_for('logout') }}">Logout</a>
 </nav>
-    <h1>Welcome {{user}} to the 49er Notes App!</h1>
+{% else %}
+<a href="{{ url_for('login') }}">Sign In</a>
+<a href="{{ url_for('register') }}">Register</a>
+</nav>
+{% endif %}
 
-    <h1>Favorite Notes</h1>
+<h1>Welcome {{user}} to the 49er Notes App!</h1>
 
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Date</th>
-            <th>User</th>
-        </tr>
-        <tr>
-            <td><a href="{{url_for('get_note', note_id=note.id)}}">{{ note.title }}</a></td>
-            <td>{{ note.date }}</td>
-            <td>{{ note.user }}</td>
-        </tr>
-    </table>
+<h1>Favorite Notes</h1>
+
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+    </tr>
+    {% for note in notes %}
+    {% if note.favorite == True %}
+    <tr>
+        {% if note.color == 'red' %}
+        <td><a href="{{ url_for('get_favorite', note_id=note.id)}}" style="color:red">{{note.title}}</a></td>
+        {% elif note.color == 'blue' %}
+        <td><a href="{{ url_for('get_favorite', note_id=note.id)}}" style="color:blue">{{note.title}}</a></td>
+        {% else %}
+        <td><a href="{{ url_for('get_favorite', note_id=note.id)}}" style="color:green">{{note.title}}</a></td>
+        {% endif %}
+        <td>{{ note.date }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
 
 </body>
 </html>

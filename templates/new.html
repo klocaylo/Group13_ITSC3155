@@ -11,14 +11,23 @@
 <body>
 <nav id="nav">
     <a href={{ url_for('index') }}>  Home</a>
-    <a href={{ url_for('get_notes') }}> My Notes</a>
-    <a href={{ url_for('new_note') }}>Add Notes</a>
-    <a href="{{ url_for('get_todo') }}"> Todo List</a>
-</nav>
 
-<nav>
+    <a href={{ url_for('get_notes') }}> My Notes</a>
+
+    <a href={{ url_for('new_note') }}>Add Notes</a>
+
+    <a href="{{ url_for('get_favorite') }}">Favorite Notes</a>
+
+    <a href="{{ url_for('get_todo') }}"> Todo List</a>
+
+    {% if user %}
     <a href="{{ url_for('logout') }}">Logout</a>
 </nav>
+{% else %}
+<a href="{{ url_for('login') }}">Sign In</a>
+<a href="{{ url_for('register') }}">Register</a>
+</nav>
+{% endif %}
 
 <h1>Welcome {{user}} to ✨The Fabulous Five✨ Notes App!</h1>
 {% if note %}
