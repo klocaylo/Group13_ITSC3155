@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+
+body {
+    padding: 30px 30px;
+    font-family: 'Montserrat';
+}
+
+title{
+    font-family: 'Georgia', serif;
+    font-style: italic;
+}
+
+label{
+    font-family: "Georgia", serif;
+}
+
+h1{
+    color: #787FF6;
+    text-align: center;
+}
+
+h2{
+    color: 	#bef0ff;
+    background-color: #787FF6;
+    text-align: center;
+    border-radius: 10px;
+}
+
+h3{
+    color: #787FF6;
+}
+
+/* navigation bar*/
+#nav {
+    background-color: #787FF6;
+    list-style: none;
+    text-align: center;
+    padding: 30px 0 30px 0;
+    border-radius: 10px;
+}
+/* navigation bar*/
+#nav > a {
+    color: 	#bef0ff;
+    display: inline-block;
+    padding-right: 100px;
+    font-size: 18px;
+    text-decoration: none;
+}
+/* navigation bar*/
+#nav > a:hover {
+    color: 	#4ADEDE;
+}
+
+form {
+    margin: auto;
+    max-width: 300px;
+}
+
+.textarea-form {
+    max-width: 600px;
+}
+
+table {
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 15px 0;
+}
+
+.center{
+    text-align: center;
+}
+
+
+
+

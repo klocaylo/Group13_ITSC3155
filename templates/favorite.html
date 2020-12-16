@@ -6,18 +6,14 @@
     <meta name="description" content="UNCC Notes App">
     <title>UNCC Notes App - View your Notes</title>
     <!-- styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='official_main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='1main.css') }}">
 </head>
 <body>
 <nav id="nav">
-    <a href={{ url_for('index') }}>  Home</a>
-
-    <a href={{ url_for('get_notes') }}> My Notes</a>
-
-    <a href={{ url_for('new_note') }}>Add Notes</a>
-
+    <a href="{{ url_for('index') }}">  Home</a>
+    <a href="{{ url_for('get_notes') }}"> My Notes</a>
+    <a href="{{ url_for('new_note') }}">Add Notes</a>
     <a href="{{ url_for('get_favorite') }}">Favorite Notes</a>
-
     <a href="{{ url_for('get_todo') }}"> Todo List</a>
 
     {% if user %}
@@ -33,7 +29,7 @@
 
 <h1>Favorite Notes</h1>
 
-
+<div class="center">
 <table>
     <tr>
         <th>Title</th>
@@ -43,17 +39,18 @@
     {% if note.favorite == True %}
     <tr>
         {% if note.color == 'red' %}
-        <td><a href="{{ url_for('get_favorite', note_id=note.id)}}" style="color:red">{{note.title}}</a></td>
+        <td><a href="{{ url_for('get_note', note_id=note.id)}}" style="color:red">{{note.title}}</a></td>
         {% elif note.color == 'blue' %}
-        <td><a href="{{ url_for('get_favorite', note_id=note.id)}}" style="color:blue">{{note.title}}</a></td>
+        <td><a href="{{ url_for('get_note', note_id=note.id)}}" style="color:blue">{{note.title}}</a></td>
         {% else %}
-        <td><a href="{{ url_for('get_favorite', note_id=note.id)}}" style="color:green">{{note.title}}</a></td>
+        <td><a href="{{ url_for('get_note', note_id=note.id)}}" style="color:green">{{note.title}}</a></td>
         {% endif %}
         <td>{{ note.date }}</td>
     </tr>
     {% endif %}
     {% endfor %}
 </table>
+</div>
 
 </body>
 </html>

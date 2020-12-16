@@ -6,7 +6,8 @@
     <meta name="description" content="✨The Fabulous Five✨ Notes App">
     <title>UNCC Notes App - View your Notes</title>
     <!-- styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='official_main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='1main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='final_forms.css') }}">
 </head>
 <body>
 
@@ -56,11 +57,22 @@
                 <input type="submit" Value="Delete">
             </form>
         </td>
+
+
             <td>
-                <form action ="{{url_for('favorite_note', note_id=note.id) }}" method="post">
-                    <input type="submit" Value="Favorite">
+                {% if note.favorite == False %}
+                    <form action ="{{url_for('favorite_note', note_id=note.id) }}" method="post">
+                        <input type="submit" Value="♡">
+
+                        {% else %}
+                    <form action ="{{url_for('unfavorite_note', note_id=note.id) }}" method="post">
+                        <input type="submit" Value="♥">
+                    {% endif %}
                 </form>
             </td>
+
+
+
         {% endfor %}
     </tr>
 

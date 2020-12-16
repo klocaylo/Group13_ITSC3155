@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='official_main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='1main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='final_forms.css') }}">
 </head>
 <body>
 <div class="navdiv">
@@ -21,7 +21,7 @@
     </nav>
     {% else %}
 
-        <a href="{{ url_for('login') }}">Sign In</a> ||
+        <a href="{{ url_for('login') }}">Sign In</a>
         <a href="{{ url_for('register') }}">Register</a>
     </nav>
     {% endif %}

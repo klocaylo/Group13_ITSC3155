@@ -7,7 +7,8 @@
     <title>UNCC Notes App - View your Notes</title>
     <!-- styles -->
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='official_main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='1main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='final_forms.css') }}">
 </head>
 <body>
 
@@ -35,6 +36,7 @@
 
 <h1>Todo List</h1>
 
+
 <table class="container">
     <tr>
         <th></th>
@@ -58,7 +60,7 @@
 </table>
 
 {% if todo %}
-<form action="{{ url_for('todo_new') }}" method="post">
+<form class="center-form" action="{{ url_for('todo_new') }}" method="post">
     {% else %}
     <form action="todo/new" method="post">
         {% endif %}

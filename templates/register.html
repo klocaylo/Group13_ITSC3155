@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='official_main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='1main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='final_forms.css') }}">
 </head>
 <body>
 <div class="navdiv">
 
     <nav id="nav">
-        <a href="{{ url_for('index') }}"> Home</a>
-        <a href="{{ url_for('get_notes') }}"> My Notes</a>
-        <a href="{{ url_for('new_note') }}">Add Note</a>
-        <a href="{{ url_for('get_todo') }}"> Todo List</a>
-    </nav>
+        <a href={{ url_for('index') }}>  Home</a>
 
-    {% if user %}
-    <nav>
+        <a href={{ url_for('get_notes') }}> My Notes</a>
+
+        <a href={{ url_for('new_note') }}>Add Notes</a>
+
+        <a href="{{ url_for('get_favorite') }}">Favorite Notes</a>
+
+        <a href="{{ url_for('get_todo') }}"> Todo List</a>
+
+        {% if user %}
         <a href="{{ url_for('logout') }}">Logout</a>
     </nav>
     {% else %}
-    <nav>
-        <a href="{{ url_for('login') }}">Sign In</a> ||
-        <a href="{{ url_for('register') }}">Register</a>
+    <a href="{{ url_for('login') }}">Sign In</a>
+    <a href="{{ url_for('register') }}">Register</a>
     </nav>
     {% endif %}
 
