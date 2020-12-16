@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="{{url_for('static', filename='javascript.js')}}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='1main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='final_forms.css') }}">
 </head>
 <body>
@@ -22,6 +24,7 @@
 
         {% if user %}
         <a href="{{ url_for('logout') }}">Logout</a>
+        <button onclick="myFunction()">Toggle Dark Mode</button>
     </nav>
     {% else %}
     <a href="{{ url_for('login') }}">Sign In</a>
@@ -31,7 +34,6 @@
 
 </div>
 <h1>Welcome {% if user %}{{user}}{% endif %}to ✨The Fabulous Five✨ Notes App!</h1>
-
 <h2>Use this site to maintain and organize your notes.</h2>
 <div class="formwrapper">
     <h2 class="title">Register</h2>

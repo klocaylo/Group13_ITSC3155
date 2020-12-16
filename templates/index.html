@@ -6,8 +6,10 @@
     <meta name="description" content="✨The Fabulous Five✨ Notes App">
     <title>UNCC Notes App</title>
     <!-- styles -->
-
+    <script src="{{url_for('static', filename='javascript.js')}}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='1main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='final_forms.css') }}">
 </head>
 <body>
 
@@ -18,8 +20,10 @@
     <a href="{{ url_for('get_favorite') }}">Favorite Notes</a>
     <a href="{{ url_for('get_todo') }}"> Todo List</a>
 
+
     {% if user %}
     <a href="{{ url_for('logout') }}">Logout</a>
+    <button onclick="myFunction()">Toggle Dark Mode</button>
 </nav>
 {% else %}
 <a href="{{ url_for('login') }}">Sign In</a>
@@ -38,6 +42,8 @@
     <h3><a href="{{ url_for('get_todo') }}"> Todo List</a></h3>
 
     <h3><a href="{{ url_for('get_favorite') }}">Favorite Notes ♥</a></h3>
+
+
 </div>
 
 </body>
